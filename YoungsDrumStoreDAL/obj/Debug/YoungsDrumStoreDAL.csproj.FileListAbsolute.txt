@@ -1,0 +1,6 @@
+C:\Users\Onshore\Desktop\YoungsDrumStore\YoungsDrumStoreDAL\bin\Debug\YoungsDrumStoreDAL.dll
+C:\Users\Onshore\Desktop\YoungsDrumStore\YoungsDrumStoreDAL\bin\Debug\YoungsDrumStoreDAL.pdb
+C:\Users\Onshore\Desktop\YoungsDrumStore\YoungsDrumStoreDAL\obj\Debug\YoungsDrumStoreDAL.csproj.CoreCompileInputs.cache
+C:\Users\Onshore\Desktop\YoungsDrumStore\YoungsDrumStoreDAL\obj\Debug\YoungsDrumStoreDAL.dll
+C:\Users\Onshore\Desktop\YoungsDrumStore\YoungsDrumStoreDAL\obj\Debug\YoungsDrumStoreDAL.pdb
+C:\Users\Onshore\Desktop\YoungsDrumStore\YoungsDrumStoreDAL\obj\Debug\YoungsDrumStoreDAL.csprojResolveAssemblyReference.cache

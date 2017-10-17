@@ -1,0 +1,167 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Young's Drum Store</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Footer-with-button-logo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Anton" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+   
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-left" href="~/Views/Home/Index.cshtml"><img src="~/WebsiteImages/WebsiteDrumLogosmall.gif"/></a>
+            </div>
+
+
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("HOME", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SHOP<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("DRUMS", "BrowseDrums", "Store")</li>
+                            <li>@Html.ActionLink("CYMBALS", "BrowseCymbals", "Store")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("ABOUT", "AboutUs", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    <li>@Html.ActionLink("CONTACT US", "ContactUs", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    @if (Session["RoleID"] != null)
+                    {
+                        if ((int)Session["RoleID"] == 1)
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin Tools <i class="glyphicon glyphicon-cog"></i> <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+
+                                    <li>@Html.ActionLink("MANAGE ACCOUNTS", "ViewAccounts", "Admin")</li>
+
+                                </ul>
+                            </li>
+                        }
+                        else if ((int)Session["RoleID"] == 2)
+                        {
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manager Tools <i class="glyphicon glyphicon-cog"></i><span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("MANAGE INVENTORY", "ViewProducts", "StoreManager")</li>
+
+                                </ul>
+                            </li>
+                        }
+                    }
+                    else
+                    {
+
+                    }
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><i class="glyphicon glyphicon-shopping-cart"></i>@Html.ActionLink("CART", "ViewCart", "Store", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    @if (Session["RoleID"] == null)
+                    {
+                        <li><span class="glyphicon glyphicon-user"></span>@Html.ActionLink("LOGIN/REGISTER", "Login", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("LOG OUT", "LogOut", "Home", new { area = "" }, new { @class = "navbar-brand" })</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        
+    </div>
+    <footer id="myFooter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h2 class="footer-logo" ><a href="#"><img src="~/WebsiteImages/WebsiteDrumLogo.gif" /> </a></h2>
+                </div>
+                <div class="col-sm-2">
+                    <h5>GET STARTED</h5>
+                    <ul>
+                        <li><a>@Html.ActionLink("Home","Index","Home")</a></li>
+                        @if (Session["AccountID"] == null)
+                        {
+                        <li><a>@Html.ActionLink("Create Account", "RegisterAccount", "Home")</a></li>
+                        <li><a>@Html.ActionLink("Login", "Login", "Home")</a></li>
+                        }
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h5>ABOUT US</h5>
+                    <ul>
+                        <li><a>@Html.ActionLink("Information","AboutUs","Home")</a></li>
+                        <li><a>@Html.ActionLink("Contact","ContactUs","Home")</a></li>
+                        
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Forums</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <div class="social-networks">
+                        <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
+                    </div>
+                    @Html.ActionLink("Contact","ContactUs","Home", new { @class="btn btn-warning"})
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>&copy; @DateTime.Now.Year - Young's Drum Store </p>
+        </div>
+    </footer>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</body>
+</html>
+
+<style>
+    .dropdown {
+        font-size: large;
+    }
+
+    .dropdown-menu {
+        background-color: black;
+        color: white;
+    }
+
+    .dropdown-menu li > a {
+        color: white;
+    }
+
+    .dropdown-menu li > a:hover {
+        background-color: orange;
+    }
+    .glyphicon-user {
+        font-size: inherit;
+    }
+
+    .navbar {
+        background-color: black;
+        font-family: 'Oswald',sans-serif;
+    }
+    
+    
+</style>

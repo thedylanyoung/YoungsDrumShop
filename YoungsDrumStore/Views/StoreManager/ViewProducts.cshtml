@@ -1,0 +1,96 @@
+﻿@model YoungsDrumStore.Models.ProductModel
+@using YoungsDrumStore.Models;
+
+@{
+    ViewBag.Title = "ViewProducts";
+}
+
+<h2 id="ViewProductsHeader">Manage Product Inventory</h2>
+
+@Html.ActionLink("Add Drum","AddDrumProduct","StoreManager", new { @class = "btn btn-primary" })
+@Html.ActionLink("Add Cymbal","AddCymbalProduct","StoreManager", new { @class = "btn btn-primary"})
+
+<h3>Drum Inventory</h3>
+<table class="table table-bordered">
+    <tr>
+        <th>Added by ID#</th>
+        <th>Drum ID#</th>
+        <th>Brand Name</th>
+        <th>Type</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>IMG URL</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (DrumPO drumPO in Model.drumList)
+    {
+        <tr>
+            <td>@Html.DisplayFor(m => drumPO.AccountID)</td>
+            <td>@Html.DisplayFor(m => drumPO.DrumID)</td>
+            <td>@Html.DisplayFor(m => drumPO.BrandName)</td>
+            <td>@Html.DisplayFor(m => drumPO.DrumType)</td>
+            <td>@Html.DisplayFor(m => drumPO.DrumQuantity)</td>
+            <td>@Html.DisplayFor(m => drumPO.DrumPrice)</td>
+            <td>
+                <a href="@drumPO.DrumImgURL" target="_blank" class="btn btn-primary">View Image</a>
+            </td>
+            <td>@Html.ActionLink("Update Product", "UpdateDrumProduct", "StoreManager", routeValues: new { DrumID = drumPO.DrumID }, htmlAttributes: new { @class = "btn btn-primary" })</td>
+            @*to do: Make a confirm delete pop up box using javasript*@
+            <td>@Html.ActionLink("Delete Product", "DeleteDrum", "StoreManager", routeValues: new { DrumID = drumPO.DrumID }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+        </tr>
+    }
+</table>
+
+<h3>Cymbal Inventory</h3>
+<table class="table table-bordered">
+    <tr>
+        <th>Added by ID#</th>
+        <th>Cymbal ID#</th>
+        <th>Brand Name</th>
+        <th>Cymbal Name</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>IMG URL</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (CymbalPO cymbalPO in Model.cymbalList)
+    {
+        <tr>
+            <td>@Html.DisplayFor(c => cymbalPO.AccountID)</td>
+            <td>@Html.DisplayFor(c => cymbalPO.CymbalID)</td>
+            <td>@Html.DisplayFor(c => cymbalPO.BrandName)</td>
+            <td>@Html.DisplayFor(c => cymbalPO.CymbalName)</td>
+            <td>@Html.DisplayFor(c => cymbalPO.CymbalQuantity)</td>
+            <td>@Html.DisplayFor(c => cymbalPO.CymbalPrice)</td>
+            <td><a href="@cymbalPO.CymbalImgURL" target="_blank" class="btn btn-primary">View Image</a></td>
+            <td>@Html.ActionLink("Update Product", "UpdateCymbalProduct", "StoreManager", routeValues: new { CymbalID = cymbalPO.CymbalID }, htmlAttributes: new { @class = "btn btn-primary" })</td>
+            <td>@Html.ActionLink("Delete Product", "DeleteCymbal", "StoreManager", routeValues: new { CymbalID = cymbalPO.CymbalID }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+        </tr>
+    }
+</table>
+
+
+<style>
+    #ViewProductsHeader {
+        color: black;
+        font-family: 'Raleway', sans-serif;
+        font-size: 50px;
+    }
+
+    td {
+        color: black;
+    }
+
+    tr {
+        color: red;
+    }
+
+    th {
+        color:black;
+    }
+</style>
+
+
+

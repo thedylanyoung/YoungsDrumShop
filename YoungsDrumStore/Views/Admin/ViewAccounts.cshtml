@@ -1,0 +1,65 @@
+﻿@model YoungsDrumStore.Models.AccountModel
+@using YoungsDrumStore.Models;
+
+@{
+    ViewBag.Title = "View Accounts";
+}
+
+<h3>View Accounts</h3>
+
+<table class="table table-bordered">
+    <tr>
+        <th>Role</th>
+        <th>User Name</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Email</th>
+        <th></th>
+        <th></th>
+    </tr>
+    @foreach (AccountPO accountPO in Model.accountList)
+    {
+        <tr>
+            <td>
+                @if (accountPO.RoleID == 1)
+                {
+                    @:Admin
+                }
+                else if (accountPO.RoleID == 2)
+                {
+                    @:Manager
+                }
+                else
+                {
+                    @:Normal
+                }
+            </td>
+            <td>@Html.DisplayFor(m => accountPO.UserName)</td>
+            <td>@Html.DisplayFor(m => accountPO.FirstName)</td>
+            <td>@Html.DisplayFor(m => accountPO.LastName)</td>
+            <td>@Html.DisplayFor(m => accountPO.Email)</td>
+            <td>@Html.ActionLink("Update Account", "UpdateAccount", "Admin", routeValues: new { AccountID = accountPO.AccountID }, htmlAttributes: new { @class = "btn btn-primary" })</td>
+            @if ((int)Session["AccountID"] != accountPO.AccountID)
+            {
+            <td>@Html.ActionLink("Delete Account", "DeleteAccount", "Admin", routeValues: new { AccountID = accountPO.AccountID }, htmlAttributes: new { @class = "btn btn-danger" })</td>
+            }
+        </tr>
+    }
+</table>
+
+<style>
+    h2 {
+        color: black;
+        font-family: 'Raleway', sans-serif;
+        font-size: 70px;
+    }
+
+    td {
+        color: black;
+    }
+
+    tr {
+        color: red;
+    }
+</style>
+

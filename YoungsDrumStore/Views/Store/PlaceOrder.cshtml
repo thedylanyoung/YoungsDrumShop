@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "PlaceOrder";
+}
+
+<head runat="server">
+    <meta http-equiv="Refresh" content="10;url=http://localhost:49912/" />
+</head>
+
+<body>
+    <h1>Thanks @Session["FirstName"]!</h1>
+    <br />
+    <h2>Your items are currently being processed and shipped!</h2>
+
+    <p> You will be redirected to homepage in <span id="countdowntimer">10 </span> Seconds</p>
+    
+
+   
+</body>
+
+
+
+<script type="text/javascript">
+     var timeleft = 10;
+     var downloadTimer = setInterval(function () {
+         timeleft--;
+         document.getElementById("countdowntimer").textContent = timeleft;
+         if (timeleft <= 0)
+             clearInterval(downloadTimer);
+     }, 1000);
+</script>

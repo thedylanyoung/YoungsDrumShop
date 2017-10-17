@@ -1,0 +1,93 @@
+﻿@model IList<YoungsDrumStore.Models.DrumPO>
+@using YoungsDrumStore.Models;
+
+@{
+    ViewBag.Title = "BrowseDrums";
+}
+
+<link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+<div class="jumbotron jumbotron-sm">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12">
+                <h1 class="pull-left">
+                    Browse Drums
+                </h1>
+                <img id="logoimg" class="pull-right" src="~/WebsiteImages/WebsiteDrumLogo.gif" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@using (Html.BeginForm("AddDrumToCart", "Store", FormMethod.Post))
+{
+    for (var i = 0; i < Model.Count; i++)
+    {
+        @Html.HiddenFor(x => Model[i].DrumQuantity)
+        @Html.HiddenFor(x => Model[i].DrumID)
+    <div class="BrowseProduct">
+        <div class="ProductTitle">
+            <h2>@Model[i].BrandName @Model[i].DrumType</h2>
+        </div>
+        <div class="BrowseImg">
+            <img class="BrowseImg" src="@Model[i].DrumImgURL" />
+        </div>
+        <div class="ProductPrice&Quantity">
+            
+                <h3>Price: $@Model[i].DrumPrice</h3>
+                @if (Model[i].DrumQuantity > 0)
+                {
+                    <div>
+                    <label>Quantity to add:</label>
+                    @Html.TextBoxFor(x => Model[i].CheckoutQty, new { @class="form-control input-sm", style="width:40px;"})
+                    <input class="btn btn-warning" type="submit" value="Add To Cart" />
+                    </div>
+                }
+            
+            @if (Model[i].DrumQuantity > 0)
+            {
+                <h4 id="InStock">&#10004; In Stock!</h4>
+            }
+            else
+            {
+                <h4 id="OutOfStock">&#10008; Out of Stock</h4>
+            }
+        </div>
+
+        <div class="BrowseDescription">
+            <text><h4>Descripton: </h4>@Model[i].DrumDescription</text>
+        </div>
+    </div>
+
+    }
+}
+
+<style>
+    .BrowseImg {
+        height: 300px;
+        width: 55%;
+        float: left;
+    }
+
+    .BrowseDescription {
+    }
+
+    .BrowseProduct {
+        height: auto;
+        padding-bottom: 10%;
+    }
+
+    .ProductPrice&Quantity {
+        display: inline-block;
+        float: right;
+    }
+
+
+    #InStock {
+        color: darkgreen;
+    }
+
+    #OutOfStock {
+        color: darkred;
+    }
+</style>

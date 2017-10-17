@@ -1,0 +1,50 @@
+﻿@model YoungsDrumStore.Models.ProductModel
+
+@{
+    ViewBag.Title = "UpdateCymbalProduct";
+}
+
+<h2>Update Cymbal Product</h2>
+
+@using (Html.BeginForm("UpdateCymbalProduct", "StoreManager"))
+{
+    @Html.HiddenFor(c => c.aCymbal.CymbalID)
+    <div id="UpdateCymbalBrandName">
+        @Html.LabelFor(c => c.aCymbal.BrandName)
+        @Html.TextBoxFor(c => c.aCymbal.BrandName, new { @class = "form-control", required = "required" })
+        @Html.ValidationMessageFor(c => c.aCymbal.BrandName)
+    </div>
+
+    <div id="UpdateCymbalName">
+        @Html.LabelFor(c => c.aCymbal.CymbalName)
+        @Html.TextBoxFor(c => c.aCymbal.CymbalName, new { @class = "form-control", required = "required" })
+        @Html.ValidationMessageFor(c => c.aCymbal.CymbalName)
+    </div>
+
+    <div id="UpdateCymbalDescription">
+        @Html.LabelFor(c => c.aCymbal.CymbalDescription)
+        @Html.TextAreaFor(c => c.aCymbal.CymbalDescription)
+        @Html.ValidationMessageFor(c => c.aCymbal.CymbalDescription)
+    </div>
+
+    <div id="UpdateCymbalQuantity">
+        @Html.LabelFor(c => c.aCymbal.CymbalQuantity)
+        @Html.TextBoxFor(c => c.aCymbal.CymbalQuantity, new { @class = "form-control", required = "required" })
+        @Html.ValidationMessageFor(c => c.aCymbal.CymbalQuantity)
+    </div>
+
+    <div id="UpdateCymbalPrice">
+        @Html.LabelFor(c => c.aCymbal.CymbalPrice)
+        @Html.TextBoxFor(c => c.aCymbal.CymbalPrice, new { @class = "form-control", type = "number", step = "0.01", max = "100000.00", placeholder = "Amount", required = "required" })
+        @Html.ValidationMessageFor(c => c.aCymbal.CymbalPrice)
+    </div>
+
+    <div id="UpdateCymbalImgURL">
+        @Html.LabelFor(c => c.aCymbal.CymbalImgURL)
+        @Html.TextBoxFor(c => c.aCymbal.CymbalImgURL)
+    </div>
+
+    <input class="btn btn-primary" type="submit" value="Update" />
+    @Html.ActionLink("Cancel", "ViewProducts", "StoreManager", new { @class = "btn btn-danger" })
+
+}
